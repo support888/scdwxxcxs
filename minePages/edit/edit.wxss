@@ -1,0 +1,389 @@
+/* ============================================================================
+ * LLS俱乐部 - 账户与资料(资料修改)样式
+ * ----------------------------------------------------------------------------
+ * 【样式锚点】修改样式时关注以下模块:
+ *   • .nav-bar        : 顶部导航
+ *   • .avatar-block   : 头像区(圆形 + 右下角相机徽标)
+ *   • .gender-pill    : 性别胶囊(小姐姐 / 小哥哥)
+ *   • .field          : 表单字段(标签 + 输入框)
+ *   • .sign-wrap      : 个性签名(带语音图标)
+ *   • .tag-item       : 兴趣标签(紫/青/粉 三色描边)
+ *   • .cover-box      : 背景图上传
+ *   • .save-btn       : 底部蓝色渐变保存按钮
+ * ============================================================================ */
+.edit-page {
+  position: relative;
+  padding-bottom: 0;
+}
+
+/* ---------- 导航栏 ---------- */
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--lls-bg);
+}
+
+.nav-bar-inner {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.nav-back {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 52rpx;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2rpx;
+}
+
+.nav-placeholder {
+  width: 64rpx;
+  height: 64rpx;
+}
+
+/* ---------- 头像 ---------- */
+.avatar-block {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding: 50rpx 0 30rpx;
+}
+
+.avatar-btn {
+  position: relative;
+  width: 220rpx;
+  height: 220rpx;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #2b3a67, #16233d);
+  border: 4rpx solid rgba(255, 255, 255, 0.78);
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12rpx 32rpx rgba(0, 8, 30, 0.5);
+}
+
+.avatar-btn::after {
+  border: none;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.avatar-emoji {
+  font-size: 108rpx;
+  line-height: 1;
+}
+
+.avatar-badge {
+  position: absolute;
+  right: -4rpx;
+  bottom: -4rpx;
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #fff;
+  background: linear-gradient(135deg, #ff9a5b, #f04438);
+  border: 6rpx solid var(--lls-bg);
+  box-shadow: 0 6rpx 16rpx rgba(240, 68, 56, 0.4);
+}
+
+/* ---------- 性别 ---------- */
+.gender-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 26rpx;
+  padding: 0 30rpx 20rpx;
+}
+
+.gender-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 78rpx;
+  padding: 0 46rpx;
+  border-radius: 39rpx;
+  font-size: 29rpx;
+  color: rgba(255, 255, 255, 0.72);
+  border: 1rpx solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+.gender-ico {
+  margin-right: 12rpx;
+  font-size: 30rpx;
+}
+
+.gender-pill.active {
+  color: #fff;
+  border-color: var(--lls-cyan);
+  background: rgba(0, 229, 255, 0.1);
+  box-shadow: 0 0 22rpx rgba(0, 229, 255, 0.25);
+}
+
+/* ---------- 表单 ---------- */
+.form-wrap {
+  position: relative;
+  z-index: 1;
+  padding: 20rpx 30rpx 0;
+}
+
+.field {
+  margin-top: 32rpx;
+}
+
+.field-label {
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+  color: #cbd6e6;
+  letter-spacing: 1rpx;
+}
+
+.field-req {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.field-input {
+  width: 100%;
+  height: 92rpx;
+  padding: 0 26rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1rpx solid rgba(255, 255, 255, 0.13);
+  border-radius: 16rpx;
+}
+
+.field-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.picker-text {
+  color: #fff;
+}
+
+.field-arrow {
+  font-size: 40rpx;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1;
+}
+
+.ph {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+/* ---------- 个性签名 ---------- */
+.sign-wrap {
+  position: relative;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1rpx solid rgba(255, 255, 255, 0.13);
+  border-radius: 16rpx;
+  padding: 24rpx 26rpx;
+}
+
+.sign-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  font-size: 30rpx;
+  color: #fff;
+  line-height: 1.6;
+  padding-bottom: 50rpx;
+  box-sizing: border-box;
+}
+
+.sign-mic {
+  position: absolute;
+  right: 24rpx;
+  bottom: 20rpx;
+  font-size: 34rpx;
+  opacity: 0.45;
+}
+
+/* ---------- 兴趣标签 ---------- */
+.tag-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22rpx;
+}
+
+.tag-item {
+  padding: 18rpx 38rpx;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.75);
+  transition: all 0.2s ease;
+}
+
+.tag-item.tag-t0 {
+  border-color: rgba(174, 142, 255, 0.5);
+  color: #d3c4ff;
+  box-shadow: 0 0 16rpx rgba(174, 142, 255, 0.15);
+}
+
+.tag-item.tag-t1 {
+  border-color: rgba(0, 229, 255, 0.45);
+  color: #a6ecff;
+  box-shadow: 0 0 16rpx rgba(0, 229, 255, 0.15);
+}
+
+.tag-item.tag-t2 {
+  border-color: rgba(215, 149, 251, 0.5);
+  color: #f0c8ff;
+  box-shadow: 0 0 16rpx rgba(215, 149, 251, 0.15);
+}
+
+.tag-item.on {
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.28), rgba(174, 142, 255, 0.28));
+  border-color: rgba(0, 229, 255, 0.85);
+  box-shadow: 0 0 24rpx rgba(0, 229, 255, 0.35);
+}
+
+/* ---------- 背景图 ---------- */
+.cover-box {
+  position: relative;
+  height: 320rpx;
+  border-radius: 18rpx;
+  overflow: hidden;
+  background: #16213a;
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+}
+
+.cover-img {
+  width: 100%;
+  height: 100%;
+}
+
+.cover-art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #1d2f4d 0%, #132038 55%, #0c1526 100%);
+}
+
+.cover-art-glow {
+  position: absolute;
+  top: -20%;
+  left: 5%;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(circle at 40% 40%, rgba(0, 229, 255, 0.16), rgba(0, 229, 255, 0) 65%);
+}
+
+.cover-art-tip {
+  position: relative;
+  z-index: 1;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 2rpx;
+}
+
+.cover-retry {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  padding: 10rpx 26rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- 敏感词提示 ---------- */
+.scan-tip {
+  margin-top: 14rpx;
+  padding: 14rpx 20rpx;
+  border-radius: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.scan-mask,
+.scan-ad {
+  color: #ffd76a;
+  background: rgba(255, 190, 60, 0.12);
+  border: 1rpx solid rgba(255, 190, 60, 0.32);
+}
+
+.scan-block {
+  color: #ff8a8a;
+  background: rgba(255, 70, 70, 0.12);
+  border: 1rpx solid rgba(255, 70, 70, 0.35);
+}
+
+/* ---------- 底部保存 ---------- */
+.edit-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 24rpx 30rpx calc(24rpx + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(10, 20, 39, 0) 0%, rgba(10, 20, 39, 0.88) 40%, rgba(10, 20, 39, 0.98) 100%);
+  z-index: 20;
+}
+
+.save-btn {
+  height: 96rpx;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 4rpx;
+  background: linear-gradient(90deg, #3f97ff 0%, #2f6bf3 50%, #1d4ed8 100%);
+  box-shadow: 0 12rpx 30rpx rgba(47, 107, 243, 0.45);
+  transition: transform 0.15s ease;
+}
+
+.save-btn:active {
+  transform: scale(0.98);
+}
+
+.save-btn.is-disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}

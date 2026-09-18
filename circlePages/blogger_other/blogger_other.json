@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "disableSwipeBack": false,
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "护航员主页",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

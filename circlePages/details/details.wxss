@@ -1,0 +1,222 @@
+/* ============================================================================
+ * LLS俱乐部 - 动态详情页样式
+ * ============================================================================ */
+.detail-page { padding-bottom: 180rpx; }
+
+/* ---------- 导航栏 ---------- */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10, 20, 39, 0.92);
+  backdrop-filter: blur(20rpx);
+}
+.nav-bar-inner {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+}
+.nav-back,
+.nav-placeholder {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: #fff;
+}
+.nav-back { border: 1rpx solid rgba(0, 229, 255, 0.3); }
+.nav-title { font-size: 32rpx; font-weight: bold; color: #fff; }
+
+/* ---------- 通用 ---------- */
+.card {
+  background: linear-gradient(160deg, var(--lls-card), var(--lls-card-2));
+  border: 1rpx solid var(--lls-border);
+  border-radius: 24rpx;
+  box-sizing: border-box;
+}
+.sec-title { font-size: 30rpx; font-weight: 800; color: #fff; padding: 30rpx 0 18rpx; }
+
+/* ---------- 详情卡 ---------- */
+.detail-card {
+  margin-top: 20rpx;
+  padding: 30rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(160deg, var(--lls-card), var(--lls-card-2));
+  border: 1rpx solid var(--lls-border);
+}
+.feed-head { display: flex; align-items: center; }
+.feed-avatar { width: 88rpx; height: 88rpx; font-size: 36rpx; margin-right: 20rpx; flex-shrink: 0; }
+.feed-user { flex: 1; min-width: 0; }
+.feed-name-row { display: flex; align-items: center; }
+.feed-name { font-size: 30rpx; font-weight: 700; color: #fff; }
+.feed-gender {
+  margin-left: 12rpx;
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  color: #4facfe;
+  background: rgba(79, 172, 254, 0.2);
+  border: 1rpx solid rgba(79, 172, 254, 0.4);
+}
+.feed-gender.female {
+  color: #ff6d7a;
+  background: rgba(255, 109, 122, 0.18);
+  border-color: rgba(255, 109, 122, 0.4);
+}
+.feed-meta { font-size: 22rpx; color: var(--lls-text-2); margin-top: 8rpx; }
+
+.feed-content {
+  margin-top: 26rpx;
+  font-size: 30rpx;
+  color: #e6ecf5;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.img-grid { display: flex; flex-wrap: wrap; margin-top: 20rpx; }
+.detail-img {
+  width: 216rpx;
+  height: 216rpx;
+  border-radius: 16rpx;
+  margin: 0 12rpx 12rpx 0;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.feed-cover {
+  margin-top: 20rpx;
+  height: 340rpx;
+  border-radius: 18rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fdf4e0, #f8e3c0);
+}
+.feed-cover-inner {
+  color: #b03a2e;
+  font-size: 46rpx;
+  font-weight: 800;
+  letter-spacing: 4rpx;
+  text-align: center;
+  padding: 0 30rpx;
+}
+.feed-tag {
+  display: inline-block;
+  margin-top: 22rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  color: var(--lls-cyan);
+  background: rgba(0, 229, 255, 0.1);
+  border: 1rpx solid rgba(0, 229, 255, 0.25);
+}
+.stat-row {
+  display: flex;
+  gap: 34rpx;
+  margin-top: 26rpx;
+  padding-top: 22rpx;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.06);
+}
+.stat-item { font-size: 24rpx; color: var(--lls-text-2); }
+
+/* ---------- 互动条 ---------- */
+.action-bar { display: flex; gap: 18rpx; margin-top: 24rpx; }
+.action-btn {
+  flex: 1;
+  height: 76rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #9aa8c2;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+.action-btn::after { border: none; }
+.action-btn.liked {
+  color: #ff6d7a;
+  border-color: rgba(255, 109, 122, 0.4);
+  background: rgba(255, 109, 122, 0.1);
+}
+.action-ico { margin-right: 10rpx; font-size: 28rpx; }
+.share-btn { font-weight: 400; }
+
+/* ---------- 评论 ---------- */
+.comment-item {
+  display: flex;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
+}
+.comment-avatar { width: 68rpx; height: 68rpx; font-size: 28rpx; flex-shrink: 0; }
+.comment-main { flex: 1; min-width: 0; margin-left: 18rpx; }
+.comment-top { display: flex; align-items: center; justify-content: space-between; }
+.comment-name { font-size: 26rpx; font-weight: 600; color: #cfe0f5; }
+.comment-time { font-size: 22rpx; color: var(--lls-text-2); }
+.comment-content { font-size: 27rpx; color: #e6ecf5; line-height: 1.6; margin-top: 10rpx; }
+
+/* ---------- 空状态 ---------- */
+.empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 0;
+  margin-top: 20rpx;
+}
+.empty-card.big { padding: 100rpx 0; }
+.empty-ico { font-size: 72rpx; opacity: 0.6; }
+.empty-txt { font-size: 26rpx; color: var(--lls-text-2); margin-top: 20rpx; }
+
+/* ---------- 底部评论输入 ---------- */
+.comment-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+  background: rgba(10, 20, 39, 0.95);
+  backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid rgba(255, 255, 255, 0.06);
+}
+.comment-input {
+  flex: 1;
+  height: 76rpx;
+  padding: 0 28rpx;
+  border-radius: 38rpx;
+  font-size: 27rpx;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+}
+.comment-ph { color: #6a7a95; }
+.comment-send {
+  margin-left: 18rpx;
+  padding: 0 40rpx;
+  height: 76rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 38rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #00b8d4, #00e5ff);
+  box-shadow: 0 8rpx 20rpx rgba(0, 229, 255, 0.3);
+}
+.comment-send.disabled { opacity: 0.5; }

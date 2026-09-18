@@ -1,0 +1,277 @@
+/* ============================================================================
+ * LLS俱乐部 - 我的收入样式
+ * ----------------------------------------------------------------------------
+ * 【样式锚点】修改样式时关注以下模块:
+ *   • .nav-bar        : 顶部导航
+ *   • .income-hero    : 可提现余额卡(渐变 + 统计三项)
+ *   • .overview-row   : 今日/本月收入小卡
+ *   • .log-list       : 收入明细列表(收入绿 / 支出红)
+ * ============================================================================ */
+.income-page {
+  position: relative;
+  padding-bottom: 0;
+}
+
+/* ---------- 导航栏 ---------- */
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--lls-bg);
+}
+
+.nav-bar-inner {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.nav-back {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 52rpx;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2rpx;
+}
+
+.nav-placeholder {
+  width: 64rpx;
+  height: 64rpx;
+}
+
+/* ---------- 余额卡 ---------- */
+.income-hero {
+  position: relative;
+  margin-top: 24rpx;
+  padding: 36rpx 34rpx 28rpx;
+  border-radius: 26rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, #7c5cff 0%, #5a6cf0 48%, #2f6bf3 100%);
+  box-shadow: 0 16rpx 40rpx rgba(90, 108, 240, 0.38);
+}
+
+.income-hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -15%;
+  width: 70%;
+  height: 180%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%);
+  transform: rotate(10deg);
+  pointer-events: none;
+}
+
+.hero-label {
+  position: relative;
+  z-index: 2;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 2rpx;
+}
+
+.hero-num {
+  position: relative;
+  z-index: 2;
+  margin-top: 18rpx;
+  display: flex;
+  align-items: baseline;
+}
+
+.hero-symbol {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #fff;
+  margin-right: 8rpx;
+}
+
+.hero-value {
+  font-size: 92rpx;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 4rpx 18rpx rgba(0, 20, 60, 0.35);
+  font-feature-settings: "tnum";
+}
+
+.hero-btn {
+  position: absolute;
+  right: 34rpx;
+  top: 60rpx;
+  z-index: 2;
+  height: 66rpx;
+  padding: 0 32rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 33rpx;
+  font-size: 27rpx;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.24);
+  border: 1rpx solid rgba(255, 255, 255, 0.4);
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  margin-top: 36rpx;
+  padding-top: 26rpx;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.22);
+}
+
+.hero-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-divider {
+  width: 1rpx;
+  height: 48rpx;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.stat-num {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #fff;
+  font-feature-settings: "tnum";
+}
+
+.stat-label {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---------- 收入概览 ---------- */
+.overview-row {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 24rpx;
+}
+
+.overview-card {
+  flex: 1;
+  padding: 30rpx 0;
+  text-align: center;
+  border-radius: 22rpx;
+  background: linear-gradient(160deg, var(--lls-card), var(--lls-card-2));
+  border: 1rpx solid var(--lls-border);
+}
+
+.overview-num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--lls-cyan);
+  font-feature-settings: "tnum";
+}
+
+.overview-label {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: var(--lls-text-2);
+}
+
+/* ---------- 明细 ---------- */
+.income-block-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 44rpx 0 22rpx;
+}
+
+.block-name {
+  position: relative;
+  padding-left: 20rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.block-name::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 30rpx;
+  border-radius: 4rpx;
+  background: linear-gradient(180deg, var(--lls-cyan), var(--lls-purple));
+  box-shadow: 0 0 12rpx rgba(0, 229, 255, 0.6);
+}
+
+.block-more {
+  font-size: 24rpx;
+  color: var(--lls-text-2);
+}
+
+.log-list {
+  border-radius: 22rpx;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--lls-card), var(--lls-card-2));
+  border: 1rpx solid var(--lls-border);
+}
+
+.log-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 28rpx;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.log-title {
+  font-size: 29rpx;
+  color: #eaf0fa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.log-meta {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: var(--lls-text-2);
+}
+
+.log-amount {
+  flex-shrink: 0;
+  margin-left: 20rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  font-feature-settings: "tnum";
+}
+
+.log-amount.in {
+  color: #22d3a6;
+}
+
+.log-amount.out {
+  color: #ff5b64;
+}

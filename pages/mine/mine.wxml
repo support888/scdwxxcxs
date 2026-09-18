@@ -1,0 +1,45 @@
+<view class="app-container mine-page">
+  <!-- 紫色渐变头部 -->
+  <view class="mine-header" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-title"></view>
+    </view>
+
+    <!-- 设置按钮 -->
+    <view class="setting-btn" bindtap="gotoSet">⚙</view>
+
+    <!-- 用户信息 -->
+    <view class="user-row lls-fade-up" bindtap="{{isLogin ? 'gotoEdit' : 'gotoLogin'}}">
+      <view class="user-avatar">
+        <block wx:if="{{isLogin && userInfo.avatar}}"><image src="{{userInfo.avatar}}" mode="aspectFill" class="avatar-img" /></block>
+        <block wx:else><text class="avatar-emoji">👾</text></block>
+      </view>
+      <view class="user-info">
+        <view class="user-name-row">
+          <text class="user-name">{{isLogin ? userInfo.nickname : '点击登录'}}</text>
+          <text class="user-edit-icon">✏</text>
+        </view>
+        <view class="user-chips">
+          <view class="chip chip-phone" wx:if="{{isLogin}}">手机号:{{userInfo.phone}}</view>
+          <view class="chip chip-id" wx:if="{{isLogin}}" catchtap="copyId">ID:{{userInfo.id}} <text class="chip-copy">⧉</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 220}}px;"></view>
+
+  <!-- 功能宫格 -->
+  <view class="lls-section">
+    <view class="grid-wrap">
+      <view class="grid-card lls-fade-up" wx:for="{{gridMenus}}" wx:key="title"
+        data-url="{{item.url}}" data-check="{{item.check}}" bindtap="gotoUrl">
+        <view class="grid-icon" style="background:{{item.bg}};box-shadow:0 8rpx 20rpx {{item.shadow}};">
+          <text>{{item.icon}}</text>
+        </view>
+        <view class="grid-text">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:40rpx;"></view>
+</view>

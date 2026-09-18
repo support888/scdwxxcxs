@@ -1,0 +1,156 @@
+<view class="app-container userinfo-page">
+  <view class="tech-element tech-circle"></view>
+  <view class="tech-element tech-lines"></view>
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-back" bindtap="goBack">‹</view>
+      <view class="nav-title">用户主页</view>
+      <view class="nav-placeholder"></view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 44}}px;"></view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+    <text class="loading-tip">正在加载资料…</text>
+  </view>
+
+  <!-- 未找到 -->
+  <view class="not-found" wx:elif="{{notFound}}">
+    <view class="nf-icon">👤</view>
+    <view class="nf-text">未找到该用户</view>
+    <view class="nf-tip">用户可能已注销或 ID 错误</view>
+  </view>
+
+  <!-- 正常展示 -->
+  <block wx:else>
+    <!-- 封面 + 头像区 -->
+    <view class="cover-area lls-fade-up">
+      <image wx:if="{{user.cover}}" src="{{user.cover}}" mode="aspectFill" class="cover-img" bindtap="previewCover" />
+      <view wx:else class="cover-bg"></view>
+      <view class="cover-mask"></view>
+    </view>
+
+    <view class="profile-card lls-fade-up">
+      <view class="avatar-row">
+        <view class="u-avatar">
+          <image wx:if="{{user.avatar}}" class="u-avatar-img" src="{{user.avatar}}" mode="aspectFill" />
+          <text wx:else class="u-avatar-text">{{user.avatarText}}</text>
+          <text wx:if="{{isMe}}" class="me-badge">本机账号</text>
+        </view>
+        <view class="u-meta">
+          <view class="u-name-row">
+            <text class="u-name">{{user.nickname}}</text>
+            <text class="u-gender {{user.gender === 'f' ? 'f' : ''}}">{{user.gender === 'f' ? '♀ 小姐姐' : '♂ 小哥哥'}}</text>
+            <text wx:if="{{user.verifyStatus === '已认证'}}" class="u-verify">✓ 已认证</text>
+          </view>
+          <view class="u-id-row" bindtap="copyId">
+            <text class="u-id">ID: {{user.shortId}}</text>
+            <text class="u-id-copy">⧉</text>
+          </view>
+          <view class="u-fans" wx:if="{{!isMe}}">{{user.fansCount}} 粉丝</view>
+          <view class="u-fans" wx:else>本机登录账号</view>
+        </view>
+      </view>
+
+      <!-- 个性签名 -->
+      <view class="signature" wx:if="{{user.signature}}">
+        <text class="sig-quote">"</text>
+        <text class="sig-text">{{user.signature}}</text>
+        <text class="sig-quote">"</text>
+      </view>
+
+      <!-- 操作按钮 -->
+      <view class="action-btn {{user.followed && !isMe ? 'is-followed' : ''}}"
+            bindtap="onActionTap">
+        <text wx:if="{{isMe}}">✎ 编辑资料</text>
+        <text wx:elif="{{user.followed}}">✓ 已关注</text>
+        <text wx:else>+ 关注 TA</text>
+      </view>
+    </view>
+
+    <!-- 基本资料 -->
+    <view class="info-card lls-fade-up">
+      <view class="card-title">
+        <view class="title-bar"></view>
+        <text>注册资料</text>
+      </view>
+      <view class="info-grid">
+        <view class="info-item">
+          <view class="info-label">生日</view>
+          <view class="info-value">{{user.birthday || '未填写'}}</view>
+          <view class="info-sub" wx:if="{{ageText}}">{{ageText}}</view>
+        </view>
+        <view class="info-item">
+          <view class="info-label">身高</view>
+          <view class="info-value">
+            <text wx:if="{{user.height}}">{{user.height}} <text class="unit">cm</text></text>
+            <text wx:else class="placeholder">未填写</text>
+          </view>
+        </view>
+        <view class="info-item">
+          <view class="info-label">体重</view>
+          <view class="info-value">
+            <text wx:if="{{user.weight}}">{{user.weight}} <text class="unit">kg</text></text>
+            <text wx:else class="placeholder">未填写</text>
+          </view>
+        </view>
+        <view class="info-item">
+          <view class="info-label">城市</view>
+          <view class="info-value">
+            <text wx:if="{{user.city}}">{{user.city}}</text>
+            <text wx:else class="placeholder">未填写</text>
+          </view>
+        </view>
+        <view class="info-item">
+          <view class="info-label">职业</view>
+          <view class="info-value">
+            <text wx:if="{{user.job}}">{{user.job}}</text>
+            <text wx:else class="placeholder">未填写</text>
+          </view>
+        </view>
+        <view class="info-item">
+          <view class="info-label">手机</view>
+          <view class="info-value">
+            <text wx:if="{{user.phone}}">{{user.phone}}</text>
+            <text wx:else class="placeholder">未填写</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 兴趣标签 -->
+    <view class="info-card lls-fade-up" wx:if="{{tagList.length}}">
+      <view class="card-title">
+        <view class="title-bar"></view>
+        <text>兴趣标签</text>
+      </view>
+      <view class="tag-wrap">
+        <view wx:for="{{tagList}}" wx:key="name"
+              class="tag-item {{item.on ? 'on' : ''}}">{{item.name}}</view>
+      </view>
+    </view>
+
+    <!-- 认证状态 -->
+    <view class="info-card lls-fade-up">
+      <view class="card-title">
+        <view class="title-bar"></view>
+        <text>认证状态</text>
+      </view>
+      <view class="verify-row">
+        <view class="verify-pill {{user.verifyStatus === '已认证' ? 'ok' : ''}}">
+          <text class="verify-ico">{{user.verifyStatus === '已认证' ? '✓' : '!'}}</text>
+          <text>{{user.verifyStatus}}</text>
+        </view>
+        <view class="verify-tip">完成实名认证可解锁更多功能</view>
+      </view>
+    </view>
+
+    <view style="height:80rpx;"></view>
+  </block>
+</view>

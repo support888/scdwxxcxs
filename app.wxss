@@ -1,0 +1,208 @@
+/**
+ * LLS俱乐部 - 全局样式
+ * 主题:深色科技风 (#0A1427 底 / #00e5ff 青光 / #ae8eff 紫)
+ */
+page {
+  --lls-bg: #0A1427;
+  --lls-bg-2: #0c1a32;
+  --lls-card: #101C33;
+  --lls-card-2: #14213d;
+  --lls-border: rgba(0, 229, 255, 0.15);
+  --lls-cyan: #00e5ff;
+  --lls-purple: #ae8eff;
+  --lls-pink: #d795fb;
+  --lls-red: #ff444d;
+  --lls-gold: #ffd700;
+  --lls-text: #ffffff;
+  --lls-text-2: #8b9bb4;
+
+  background-color: var(--lls-bg);
+  color: var(--lls-text);
+  font-size: 28rpx;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+/* ---------- 页面容器 ---------- */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--lls-bg);
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ---------- 科技风背景装饰 ---------- */
+.tech-element {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tech-circle {
+  top: -200rpx;
+  right: -200rpx;
+  width: 600rpx;
+  height: 600rpx;
+  border-radius: 50%;
+  border: 1rpx dashed rgba(0, 229, 255, 0.18);
+  box-shadow: 0 0 120rpx rgba(0, 229, 255, 0.08) inset;
+  animation: lls-rotate 40s linear infinite;
+}
+
+.tech-lines {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 229, 255, 0.03) 1rpx, transparent 1rpx),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1rpx, transparent 1rpx);
+  background-size: 60rpx 60rpx;
+}
+
+.tech-crosshair {
+  bottom: 160rpx;
+  left: -100rpx;
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 50%;
+  border: 1rpx solid rgba(174, 142, 255, 0.12);
+}
+
+@keyframes lls-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- 通用卡片 ---------- */
+.lls-card {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(160deg, var(--lls-card), var(--lls-card-2));
+  border: 1rpx solid var(--lls-border);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.lls-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--lls-text);
+}
+
+.title_choose {
+  position: relative;
+  padding-left: 18rpx;
+}
+
+.title_choose::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 26rpx;
+  border-radius: 4rpx;
+  background: linear-gradient(180deg, var(--lls-cyan), var(--lls-purple));
+  box-shadow: 0 0 12rpx rgba(0, 229, 255, 0.6);
+}
+
+.view-more {
+  display: flex;
+  align-items: center;
+  color: var(--lls-text-2);
+  font-size: 24rpx;
+}
+
+/* ---------- 按钮 ---------- */
+.lls-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(90deg, #00b8d4, #00e5ff);
+  box-shadow: 0 8rpx 24rpx rgba(0, 229, 255, 0.25);
+}
+
+.lls-btn--ghost {
+  background: transparent;
+  border: 1rpx solid var(--lls-border);
+  color: var(--lls-cyan);
+  box-shadow: none;
+}
+
+.lls-btn--purple {
+  background: linear-gradient(90deg, #7c5cff, #ae8eff);
+  box-shadow: 0 8rpx 24rpx rgba(174, 142, 255, 0.25);
+}
+
+.lls-btn::after { border: none; }
+
+/* ---------- 渐变文字 ---------- */
+.lls-gradient-text {
+  background: linear-gradient(90deg, var(--lls-cyan), var(--lls-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- 头像兜底 ---------- */
+.lls-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2b3a67, #173054);
+  color: var(--lls-cyan);
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1rpx solid var(--lls-border);
+}
+
+/* ---------- 空状态 ---------- */
+.lls-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+  color: var(--lls-text-2);
+  font-size: 26rpx;
+}
+
+.lls-empty::before {
+  content: '';
+  width: 140rpx;
+  height: 140rpx;
+  margin-bottom: 24rpx;
+  border-radius: 50%;
+  border: 2rpx dashed rgba(0, 229, 255, 0.25);
+  background: rgba(0, 229, 255, 0.04);
+}
+
+/* ---------- 上下架动画 ---------- */
+@keyframes lls-fade-up {
+  from { opacity: 0; transform: translateY(30rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lls-fade-up { animation: lls-fade-up 0.5s ease both; }

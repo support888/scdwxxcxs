@@ -1,0 +1,300 @@
+/* ============================================================================
+ * LLS俱乐部 - 我的优惠券样式
+ * ----------------------------------------------------------------------------
+ * 【样式锚点】修改样式时关注以下模块:
+ *   • .nav-bar / .nav-back   : 顶部导航
+ *   • .coupon-hero           : 蓝色渐变统计卡(可用张数 + 去使用)
+ *   • .coupon-block-title    : 分区标题(带渐变竖条)
+ *   • .coupon-item           : 券条目
+ *   • .glass                 : 空态沙漏(纯 CSS 绘制)
+ * ============================================================================ */
+.coupon-page {
+  position: relative;
+}
+
+/* ---------- 导航栏 ---------- */
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--lls-bg);
+}
+
+.nav-bar-inner {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.nav-back {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 52rpx;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2rpx;
+}
+
+.nav-placeholder {
+  width: 64rpx;
+  height: 64rpx;
+}
+
+/* ---------- 蓝色渐变统计卡 ---------- */
+.coupon-hero {
+  position: relative;
+  margin-top: 24rpx;
+  height: 360rpx;
+  border-radius: 26rpx;
+  padding: 34rpx 32rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3aa6ff 0%, #2b8dfb 42%, #1f6fd6 100%);
+  box-shadow: 0 16rpx 40rpx rgba(31, 111, 214, 0.35);
+}
+
+/* 斜向高光 */
+.coupon-hero::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -10%;
+  width: 70%;
+  height: 180%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 60%);
+  transform: rotate(8deg);
+  pointer-events: none;
+}
+
+.hero-label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 2rpx;
+}
+
+.hero-ico {
+  margin-right: 10rpx;
+  font-size: 28rpx;
+}
+
+.hero-num {
+  position: relative;
+  z-index: 2;
+  margin-top: 26rpx;
+  display: flex;
+  align-items: baseline;
+}
+
+.hero-num .num {
+  font-size: 96rpx;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 4rpx 16rpx rgba(0, 40, 90, 0.35);
+  font-feature-settings: "tnum";
+}
+
+.hero-num .unit {
+  margin-left: 12rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+.hero-btn {
+  position: absolute;
+  right: 32rpx;
+  bottom: 34rpx;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  height: 64rpx;
+  padding: 0 28rpx;
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1rpx solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-size: 26rpx;
+  transition: transform 0.15s ease;
+}
+
+.hero-btn:active {
+  transform: scale(0.96);
+}
+
+.hero-arrow {
+  margin-left: 8rpx;
+  font-size: 30rpx;
+  line-height: 1;
+}
+
+/* ---------- 分区标题 ---------- */
+.coupon-block-title {
+  position: relative;
+  margin: 44rpx 0 24rpx;
+  padding-left: 20rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2rpx;
+}
+
+.coupon-block-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 30rpx;
+  border-radius: 4rpx;
+  background: linear-gradient(180deg, var(--lls-cyan), var(--lls-purple));
+  box-shadow: 0 0 12rpx rgba(0, 229, 255, 0.6);
+}
+
+/* ---------- 券条目 ---------- */
+.coupon-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 24rpx;
+  margin-bottom: 20rpx;
+  border-radius: 22rpx;
+  background: linear-gradient(160deg, var(--lls-card), var(--lls-card-2));
+  border: 1rpx solid var(--lls-border);
+}
+
+.coupon-left {
+  width: 180rpx;
+  flex-shrink: 0;
+  text-align: center;
+  border-right: 1rpx dashed rgba(255, 255, 255, 0.15);
+}
+
+.coupon-amount {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  color: var(--lls-cyan);
+}
+
+.coupon-symbol {
+  font-size: 28rpx;
+}
+
+.coupon-value {
+  font-size: 56rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.coupon-cond {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: var(--lls-text-2);
+}
+
+.coupon-mid {
+  flex: 1;
+  min-width: 0;
+  padding: 0 24rpx;
+}
+
+.coupon-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.coupon-time {
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: var(--lls-text-2);
+}
+
+.coupon-use {
+  flex-shrink: 0;
+  height: 60rpx;
+  padding: 0 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background: linear-gradient(90deg, #00b8d4, #00e5ff);
+  box-shadow: 0 6rpx 18rpx rgba(0, 229, 255, 0.28);
+}
+
+/* ---------- 空态(沙漏) ---------- */
+.coupon-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 150rpx 0 120rpx;
+}
+
+.glass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.glass-lid,
+.glass-base {
+  width: 176rpx;
+  height: 16rpx;
+  border-radius: 8rpx;
+  background: #1e2e4d;
+}
+
+.glass-top {
+  width: 0;
+  height: 0;
+  margin-top: 6rpx;
+  border-left: 70rpx solid transparent;
+  border-right: 70rpx solid transparent;
+  border-top: 76rpx solid #1e2e4d;
+}
+
+.glass-neck {
+  width: 18rpx;
+  height: 16rpx;
+  background: #1e2e4d;
+}
+
+.glass-bottom {
+  width: 0;
+  height: 0;
+  border-left: 70rpx solid transparent;
+  border-right: 70rpx solid transparent;
+  border-bottom: 76rpx solid #1e2e4d;
+  margin-bottom: 6rpx;
+}
+
+.coupon-empty-text {
+  margin-top: 40rpx;
+  font-size: 26rpx;
+  color: #5a6b85;
+  letter-spacing: 4rpx;
+}

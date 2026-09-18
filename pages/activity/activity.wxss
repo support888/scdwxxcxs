@@ -1,0 +1,339 @@
+/* ============================================================================
+ * LLS俱乐部 - 广场/动态样式 (迭代版本)
+ * ----------------------------------------------------------------------------
+ * 【样式锚点】修改样式时关注以下模块:
+ *   • .top-tabs         : 顶部关注/动态Tab
+ *   • .cate-tabs        : 分类Tab(最新/推荐/热评/点赞/人气)
+ *   • .feed-card        : 动态卡片
+ *   • .feed-head        : 头部(头像+昵称+性别+时间)
+ *   • .feed-cover       : 封面图(可选)
+ *   • .feed-actions     : 互动行(浏览/评论/点赞)
+ *   • .fab              : 右下发布按钮
+ * ============================================================================ */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--lls-bg);
+}
+
+.nav-bar-inner {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* ---------- 搜索 + 顶部tab ---------- */
+.search-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  padding: 12rpx 24rpx 16rpx;
+  background: var(--lls-bg);
+  box-sizing: border-box;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 72rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 36rpx;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  color: var(--lls-text-2);
+  margin-right: 14rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.search-ph {
+  color: #6a7a95;
+}
+
+.top-tabs {
+  display: flex;
+  align-items: center;
+  margin-left: 24rpx;
+}
+
+.top-tab {
+  font-size: 28rpx;
+  color: var(--lls-text-2);
+  padding: 6rpx 14rpx;
+  position: relative;
+}
+
+.top-tab.active {
+  color: var(--lls-cyan);
+  font-weight: bold;
+}
+
+.top-tab.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6rpx;
+  width: 40rpx;
+  height: 5rpx;
+  border-radius: 3rpx;
+  background: var(--lls-cyan);
+  box-shadow: 0 0 10rpx rgba(0, 229, 255, 0.8);
+}
+
+/* ---------- 分类 tab ---------- */
+.cate-tabs {
+  display: flex;
+  padding: 10rpx 30rpx 0;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
+}
+
+.cate-tab {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  color: var(--lls-text-2);
+  padding: 20rpx 0 22rpx;
+  position: relative;
+}
+
+.cate-tab.active {
+  color: #fff;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.cate-tab.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 48rpx;
+  height: 6rpx;
+  border-radius: 4rpx;
+  background: var(--lls-cyan);
+  box-shadow: 0 0 12rpx rgba(0, 229, 255, 0.8);
+}
+
+/* ---------- 动态卡片 ---------- */
+.feed-list {
+  margin-top: 4rpx;
+}
+
+.feed-card {
+  background: linear-gradient(160deg, var(--lls-card), var(--lls-card-2));
+  border: 1rpx solid var(--lls-border);
+  border-radius: 24rpx;
+  padding: 26rpx;
+  margin-bottom: 20rpx;
+}
+
+.feed-head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.feed-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  margin-right: 20rpx;
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+
+.feed-user {
+  flex: 1;
+  min-width: 0;
+}
+
+.feed-name-row {
+  display: flex;
+  align-items: center;
+}
+
+.feed-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feed-gender {
+  margin-left: 10rpx;
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background: rgba(79, 172, 254, 0.2);
+  border: 1rpx solid rgba(79, 172, 254, 0.4);
+  color: #4facfe;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feed-gender.female {
+  background: rgba(255, 109, 122, 0.18);
+  border-color: rgba(255, 109, 122, 0.4);
+  color: #ff6d7a;
+}
+
+.feed-meta {
+  font-size: 22rpx;
+  color: var(--lls-text-2);
+  margin-top: 8rpx;
+}
+
+.feed-content {
+  font-size: 28rpx;
+  color: #e6ecf5;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.feed-cover {
+  margin-top: 20rpx;
+  border-radius: 18rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fdf4e0, #f8e3c0);
+  height: 320rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed-cover-inner {
+  color: #b03a2e;
+  font-size: 48rpx;
+  font-weight: bold;
+  letter-spacing: 4rpx;
+  text-shadow: 0 2rpx 0 rgba(255, 255, 255, 0.6);
+}
+
+.feed-tag {
+  display: inline-block;
+  margin-top: 20rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 10rpx;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1rpx solid rgba(0, 229, 255, 0.25);
+  color: var(--lls-cyan);
+  font-size: 24rpx;
+}
+
+.feed-actions {
+  display: flex;
+  margin-top: 24rpx;
+  gap: 16rpx;
+}
+
+.feed-action {
+  flex: 1;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14rpx;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+  color: #9aa8c2;
+  font-size: 24rpx;
+}
+
+.feed-action.liked {
+  color: #ff6d7a;
+  border-color: rgba(255, 109, 122, 0.4);
+  background: rgba(255, 109, 122, 0.1);
+}
+
+/* ---------- 关注Tab ---------- */
+.follow-users {
+  white-space: nowrap;
+  padding: 10rpx 6rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.follow-user {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 18rpx;
+  vertical-align: top;
+}
+
+.follow-avatar {
+  width: 104rpx;
+  height: 104rpx;
+  border: 2rpx solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 14rpx rgba(0, 229, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.follow-avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.follow-name {
+  max-width: 130rpx;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: var(--lls-text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.follow-head {
+  width: 88rpx;
+  height: 88rpx;
+  border: 2rpx solid rgba(0, 229, 255, 0.35);
+}
+
+/* ---------- 发布按钮 ---------- */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 200rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00b8d4, #00e5ff);
+  color: #fff;
+  font-size: 56rpx;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12rpx 32rpx rgba(0, 229, 255, 0.45);
+  z-index: 50;
+}

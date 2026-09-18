@@ -1,0 +1,9 @@
+{
+  "desc": "LLS俱乐部 站点地图",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

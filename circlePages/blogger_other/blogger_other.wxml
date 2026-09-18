@@ -1,0 +1,242 @@
+<view class="app-container profile-page">
+  <view class="tech-element tech-lines"></view>
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-back" bindtap="goBack">‹</view>
+      <view class="nav-title">护航员主页</view>
+      <view class="nav-home" bindtap="gotoHome">⌂</view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 44}}px;"></view>
+
+  <!-- 顶部提示条 -->
+  <view class="notice-strip">
+    <text class="notice-icon">📣</text>
+    <text class="notice-text">下单后，系统将自动发短信提醒接单人接单</text>
+  </view>
+
+  <!-- 封面 + 头像 + 资料 -->
+  <view class="hero lls-fade-up">
+    <view class="hero-cover" style="background:{{coverGradient}};">
+      <view class="hero-cover-grid"></view>
+      <text class="hero-corner">{{player.coverCorner}}</text>
+      <view class="hero-cover-mask"></view>
+
+      <view class="hero-body">
+        <view class="hero-avatar">
+          <block wx:if="{{player.avatar}}">
+            <image src="{{player.avatar}}" mode="aspectFill" class="hero-avatar-img" />
+          </block>
+          <block wx:else>
+            <text class="hero-avatar-text">{{player.avatarText}}</text>
+          </block>
+        </view>
+        <view class="hero-main">
+          <view class="hero-name-row">
+            <text class="hero-name">{{player.name}}</text>
+            <text class="lv-badge">{{player.level}}</text>
+          </view>
+          <view class="hero-chips">
+            <text class="chip chip-rank">{{player.rank}}</text>
+            <text class="chip chip-city">📍 {{player.city}}</text>
+          </view>
+          <view class="hero-badge" wx:if="{{player.badge}}">🎯 {{player.badge}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 关注 / 粉丝 / 获赞 -->
+    <view class="stat-strip">
+      <view class="stat-item">
+        <text class="stat-num">{{player.followCount}}</text>
+        <text class="stat-label">关注</text>
+      </view>
+      <view class="stat-line"></view>
+      <view class="stat-item">
+        <text class="stat-num">{{player.fansCount}}</text>
+        <text class="stat-label">粉丝</text>
+      </view>
+      <view class="stat-line"></view>
+      <view class="stat-item">
+        <text class="stat-num">{{player.likeCount}}</text>
+        <text class="stat-label">获赞</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 技能标签横向滚动 -->
+  <scroll-view class="skill-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="skill-scroll-inner">
+      <view class="skill-chip" wx:for="{{player.skillTags}}" wx:key="*this">{{item}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 派单 + 评分 + 简介 + 个性标签 -->
+  <view class="lls-section">
+    <view class="card rate-card">
+      <view class="rate-head">
+        <text class="rate-title">{{player.badge}}</text>
+      </view>
+      <view class="rate-stars">
+        <text wx:for="{{stars}}" wx:key="i" class="star {{item.on ? 'on' : ''}}">★</text>
+        <text class="rate-score">评分:{{player.score}}</text>
+      </view>
+
+      <view class="rate-intro-label">技能简介 |</view>
+      <view class="rate-intro">{{player.skillIntro}}</view>
+
+      <view class="rate-tag-label">个性标签</view>
+      <view class="tag-grid">
+        <view class="tag-pill" wx:for="{{player.personalityTags}}" wx:key="*this">
+          <text class="tag-dot">✦</text>
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我的服务介绍 -->
+  <view class="lls-section">
+    <view class="card">
+      <view class="card-title">我的服务介绍</view>
+      <view class="service-row" wx:for="{{player.services}}" wx:key="name">
+        <text class="service-ico">💎</text>
+        <text class="service-name">{{item.name}}</text>
+        <text class="service-status" data-name="{{item.name}}" bindtap="onConsult">{{item.status}} ›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 三 Tab -->
+  <view class="wall-tabs">
+    <view class="wall-tab {{tabActive === 0 ? 'active' : ''}}" data-index="0" bindtap="chooseTab">关于TA</view>
+    <view class="wall-tab {{tabActive === 1 ? 'active' : ''}}" data-index="1" bindtap="chooseTab">礼物墙</view>
+    <view class="wall-tab {{tabActive === 2 ? 'active' : ''}}" data-index="2" bindtap="chooseTab">动态墙</view>
+  </view>
+
+  <!-- ==================== 关于TA ==================== -->
+  <block wx:if="{{tabActive === 0}}">
+    <!-- 个人资料 -->
+    <view class="lls-section">
+      <view class="sec-title title_choose">个人资料</view>
+      <view class="card">
+        <view class="info-row"><text class="info-k">职业：</text><text class="info-v">{{player.job}}</text></view>
+        <view class="info-row"><text class="info-k">城市：</text><text class="info-v">{{player.city}}</text></view>
+        <view class="info-row"><text class="info-k">年龄：</text><text class="info-v">{{player.age}}岁</text></view>
+        <view class="info-row"><text class="info-k">星座：</text><text class="info-v">{{player.zodiac}}</text></view>
+      </view>
+    </view>
+
+    <!-- 个性签名 -->
+    <view class="lls-section">
+      <view class="sec-title title_choose">个性签名</view>
+      <view class="card sign-card">{{player.signature}}</view>
+    </view>
+
+    <!-- 个人标签 -->
+    <view class="lls-section">
+      <view class="sec-title title_choose">个人标签</view>
+      <view class="tag-row">
+        <view class="tag-chip" wx:for="{{player.tags}}" wx:key="*this">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 技能卡片 -->
+    <view class="lls-section">
+      <view class="sec-title title_choose">技能卡片</view>
+      <view class="skill-card" wx:for="{{player.skills}}" wx:key="game">
+        <view class="skill-card-ico">{{item.icon}}</view>
+        <view class="skill-card-mid">
+          <view class="skill-card-name">{{item.game}}</view>
+          <view class="skill-card-price">¥ {{item.price}}/{{item.unit}}</view>
+          <view class="skill-card-online {{item.online ? 'on' : ''}}">{{item.online ? '● 在线接单中' : '○ 休息中'}}</view>
+        </view>
+        <view class="skill-card-btn" data-game="{{item.game}}" catchtap="onOrder">下单</view>
+      </view>
+    </view>
+
+    <!-- 评价 -->
+    <view class="lls-section">
+      <view class="sec-head">
+        <view class="sec-title title_choose">评价({{player.reviews.length}})</view>
+      </view>
+      <block wx:if="{{player.reviews.length > 0}}">
+        <view class="review-card" wx:for="{{player.reviews}}" wx:key="id">
+          <view class="review-head">
+            <view class="lls-avatar review-avatar">{{item.avatarText}}</view>
+            <view class="review-user">
+              <view class="review-name">{{item.name}}</view>
+              <view class="review-stars">
+                <text wx:for="{{item.starArr}}" wx:for-item="s" wx:key="i" class="star sm {{s.on ? 'on' : ''}}">★</text>
+              </view>
+            </view>
+            <text class="review-time">{{item.time}}</text>
+          </view>
+          <view class="review-content">{{item.content}}</view>
+          <view class="review-tags" wx:if="{{item.tags.length > 0}}">
+            <text class="review-tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+          </view>
+        </view>
+      </block>
+      <view class="card empty-card" wx:else>
+        <view class="empty-ico">💬</view>
+        <view class="empty-txt">暂无评价</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- ==================== 礼物墙 ==================== -->
+  <block wx:if="{{tabActive === 1}}">
+    <view class="lls-section">
+      <view class="sec-title title_choose">礼物墙({{giftCount}})</view>
+      <view class="card empty-card big">
+        <view class="empty-ico">🏆</view>
+        <view class="empty-txt">暂无礼物,快去互动吧!</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- ==================== 动态墙 ==================== -->
+  <block wx:if="{{tabActive === 2}}">
+    <view class="lls-section">
+      <view class="sec-title title_choose">动态墙({{player.feeds.length}})</view>
+      <block wx:if="{{player.feeds.length > 0}}">
+        <view class="wall-card" wx:for="{{player.feeds}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="gotoFeed">
+          <view class="wall-head">
+            <view class="lls-avatar wall-avatar">{{item.avatarText}}</view>
+            <view class="wall-user">
+              <view class="wall-name">{{item.name}}</view>
+              <view class="wall-meta">{{item.time}} 发布于 {{item.city}}</view>
+            </view>
+          </view>
+          <view class="wall-content">{{item.content}}</view>
+          <view class="wall-cover" wx:if="{{item.cover}}">
+            <text>{{item.coverText}}</text>
+          </view>
+          <view class="wall-tag" wx:if="{{item.tag}}"># {{item.tag}}</view>
+          <view class="wall-actions">
+            <text class="wall-action">👁 {{item.views}}</text>
+            <text class="wall-action">💬 {{item.comments}}</text>
+            <text class="wall-action {{item.liked ? 'liked' : ''}}">♡ {{item.likes}}</text>
+          </view>
+        </view>
+      </block>
+      <view class="card empty-card big" wx:else>
+        <view class="empty-ico">📭</view>
+        <view class="empty-txt">TA还没有发布动态</view>
+      </view>
+    </view>
+  </block>
+
+  <view style="height:200rpx;"></view>
+
+  <!-- 底部关注栏 -->
+  <view class="bottom-bar">
+    <view class="follow-btn {{player.followed ? 'followed' : ''}}" bindtap="onFollow">
+      {{player.followed ? '已关注' : '+ 关注'}}
+    </view>
+  </view>
+</view>

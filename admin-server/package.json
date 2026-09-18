@@ -1,0 +1,12 @@
+{
+  "name": "lls-club-admin",
+  "version": "1.0.0",
+  "description": "LLS俱乐部 本地后台管理(零依赖,Node 原生实现)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

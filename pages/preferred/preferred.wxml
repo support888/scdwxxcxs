@@ -1,0 +1,61 @@
+<view class="app-container">
+  <view class="tech-element tech-lines"></view>
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-title">消息</view>
+      <!-- 清空未读消息(点击弹窗二次确认) -->
+      <view class="nav-clear" bindtap="onClearMsg">
+        <text class="nav-clear-icon">🧹</text>
+        <text>清空</text>
+      </view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 44}}px;"></view>
+
+  <!-- 消息类型入口 -->
+  <view class="lls-section">
+    <view class="type-row lls-fade-up">
+      <view wx:for="{{typeList}}" wx:key="id"
+        class="type-item {{typeActive === item.id ? 'active' : ''}}"
+        data-id="{{item.id}}" bindtap="chooseType">
+        <view class="type-icon">{{item.icon}}</view>
+        <view class="type-text">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 消息列表(左滑露出删除按钮) -->
+  <view class="lls-section msg-list" bindtap="closeAllSwipe">
+    <view class="swipe-wrap lls-fade-up" wx:for="{{msgList}}" wx:key="id" data-index="{{index}}">
+      <!-- 右侧删除按钮 -->
+      <view class="swipe-del" data-index="{{index}}" catchtap="onDeleteTap">删除</view>
+      <!-- 可滑动的卡片主体 -->
+      <view class="swipe-content {{dragging ? '' : 'swipe-anim'}}"
+        style="transform: translateX({{item.offsetX}}px);"
+        data-index="{{index}}"
+        bindtouchstart="onTouchStart"
+        bindtouchmove="onTouchMove"
+        bindtouchend="onTouchEnd"
+        bindtouchcancel="onTouchEnd">
+        <view class="msg-card">
+          <view class="msg-icon">{{item.icon}}</view>
+          <view class="msg-body">
+            <view class="msg-title-row">
+              <text class="msg-title">{{item.title}}</text>
+              <text class="msg-time">{{item.time}}</text>
+            </view>
+            <view class="msg-excerpt">{{item.excerpt}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="bottom-tip" wx:if="{{msgList.length > 0}}">老板这是底线了~</view>
+  <view class="lls-empty" wx:if="{{msgList.length === 0}}">暂无更多消息</view>
+
+  <view style="height:40rpx;"></view>
+</view>

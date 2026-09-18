@@ -1,0 +1,61 @@
+<view class="app-container">
+  <view class="tech-element tech-circle"></view>
+  <view class="tech-element tech-lines"></view>
+
+  <view class="search-page {{searched ? 'searching' : 'idle'}}">
+    <!-- 顶部占位:状态栏高度(px) + 空隙(未搜索时把搜索栏推到中间偏上) -->
+    <view style="height:{{statusBarHeight}}px;"></view>
+    <view class="search-top-gap"></view>
+
+    <!-- 搜索栏 -->
+    <view class="search-bar">
+      <view class="search-input-wrap">
+        <text class="s-icon">🔍</text>
+        <input class="s-input" placeholder="搜索昵称 / ID" placeholder-class="s-ph"
+          value="{{keyword}}" confirm-type="search" focus="{{autoFocus}}"
+          bindinput="onInput" bindconfirm="doSearch" />
+        <text wx:if="{{keyword}}" class="s-clear" bindtap="onClear">✕</text>
+      </view>
+      <view class="s-btn" bindtap="doSearch">搜索</view>
+    </view>
+
+    <!-- 搜索历史(未搜索时展示) -->
+    <view class="history" wx:if="{{!searched && history.length}}">
+      <view class="h-title">搜索历史</view>
+      <view class="h-tags">
+        <text wx:for="{{history}}" wx:key="*this" class="h-tag" data-kw="{{item}}" bindtap="onTagTap">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- 搜索结果 -->
+    <view class="result-list" wx:if="{{searched}}">
+      <view class="user-card" wx:for="{{list}}" wx:key="openid">
+        <view class="u-avatar" data-index="{{index}}" bindtap="gotoUser">
+          <image wx:if="{{item.avatar}}" class="u-avatar-img" src="{{item.avatar}}" mode="aspectFill" />
+          <text wx:else class="u-avatar-text">{{item.avatarText}}</text>
+          <text wx:if="{{item.isMe}}" class="u-me-badge">我</text>
+        </view>
+        <view class="u-info" data-index="{{index}}" bindtap="gotoUser">
+          <view class="u-name-row">
+            <text class="u-name">{{item.nickname}}</text>
+            <text class="u-gender {{item.gender === 'f' ? 'f' : ''}}">{{item.gender === 'f' ? '♀' : '♂'}}</text>
+            <text wx:if="{{item.isMe}}" class="u-me-tag">本机账号</text>
+          </view>
+          <view class="u-sub">ID: {{item.shortId}}<text wx:if="{{item.city}}"> · {{item.city}}</text></view>
+          <view class="u-sign" wx:if="{{item.signature}}">{{item.signature}}</view>
+          <view class="u-fans">{{item.fansCount}} 粉丝</view>
+        </view>
+        <view wx:if="{{!item.isMe}}" class="u-follow {{item.followed ? 'followed' : ''}}" data-index="{{index}}" catchtap="onFollowUser">
+          {{item.followed ? '已关注' : '+ 关注'}}
+        </view>
+        <view wx:else class="u-follow is-me" data-index="{{index}}" catchtap="gotoUser">查看主页</view>
+      </view>
+
+      <view class="empty" wx:if="{{!list.length && !loading}}">
+        <view class="empty-icon">🔍</view>
+        <view class="empty-text">未找到"{{keyword}}"相关的用户</view>
+        <view class="empty-tip">试试其他昵称或用户 ID</view>
+      </view>
+    </view>
+  </view>
+</view>

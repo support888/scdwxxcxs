@@ -1,0 +1,216 @@
+/* ============================================================================
+ * LLS俱乐部 - 消息样式 (迭代版本)
+ * ----------------------------------------------------------------------------
+ * 【样式锚点】修改样式时关注以下模块:
+ *   • .type-row         : 顶部消息类型入口
+ *   • .type-item        : 单个类型按钮(图标+文字)
+ *   • .nav-clear        : 导航栏「清空」按钮
+ *   • .msg-list         : 消息列表
+ *   • .swipe-wrap/-content/-del : 左滑删除容器/卡片主体/删除按钮
+ *   • .msg-card         : 消息卡片(图标+标题+时间+摘要)
+ *   • .bottom-tip       : 底部提示
+ * ============================================================================ */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--lls-bg);
+}
+
+.nav-bar-inner {
+  position: relative;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* ---------- 导航栏「清空」按钮 ---------- */
+.nav-clear {
+  position: absolute;
+  left: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  padding: 8rpx 18rpx;
+  border-radius: 28rpx;
+  font-size: 24rpx;
+  color: var(--lls-cyan, #00e5ff);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1rpx solid rgba(0, 229, 255, 0.25);
+}
+
+.nav-clear:active {
+  background: rgba(0, 229, 255, 0.18);
+}
+
+.nav-clear-icon {
+  margin-right: 6rpx;
+  font-size: 24rpx;
+}
+
+/* ---------- 消息类型入口 ---------- */
+.type-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 26rpx 10rpx 10rpx;
+}
+
+.type-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 26rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid transparent;
+}
+
+.type-item.active {
+  border-color: rgba(0, 229, 255, 0.35);
+  background: rgba(0, 229, 255, 0.05);
+}
+
+.type-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #1d3a6e, #12244a);
+  border: 1rpx solid rgba(0, 229, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  margin-bottom: 14rpx;
+  box-shadow: 0 6rpx 18rpx rgba(0, 20, 60, 0.5);
+}
+
+.type-text {
+  font-size: 26rpx;
+  color: #cdd6e6;
+}
+
+.type-item.active .type-text {
+  color: var(--lls-cyan);
+}
+
+/* ---------- 消息列表 ---------- */
+.msg-list {
+  margin-top: 26rpx;
+}
+
+/* ---------- 左滑删除容器 ---------- */
+.swipe-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.swipe-content {
+  position: relative;
+  z-index: 2;
+  will-change: transform;
+}
+
+.swipe-anim {
+  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.35, 1);
+}
+
+.swipe-del {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 160rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #fff;
+  background: linear-gradient(135deg, #ff4d4d, #c81e1e);
+}
+
+.swipe-del:active {
+  background: linear-gradient(135deg, #e63939, #a51515);
+}
+
+.msg-card {
+  display: flex;
+  align-items: flex-start;
+  background: linear-gradient(160deg, #14213d, #182a4e);
+  border: 1rpx solid rgba(0, 229, 255, 0.2);
+  border-radius: 20rpx;
+  padding: 26rpx;
+}
+
+.msg-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #1d3a6e, #12244a);
+  border: 1rpx solid rgba(0, 229, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  margin-right: 22rpx;
+  flex-shrink: 0;
+}
+
+.msg-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.msg-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.msg-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  margin-right: 16rpx;
+}
+
+.msg-time {
+  font-size: 22rpx;
+  color: #7b8bab;
+  flex-shrink: 0;
+}
+
+.msg-excerpt {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #9aa8c2;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* ---------- 底部提示 ---------- */
+.bottom-tip {
+  text-align: center;
+  color: #6a7a95;
+  font-size: 26rpx;
+  padding: 60rpx 0 30rpx;
+}

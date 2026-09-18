@@ -1,0 +1,112 @@
+<view class="app-container">
+  <view class="tech-element tech-lines"></view>
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-title">动态</view>
+    </view>
+  </view>
+
+  <!-- 搜索 + 关注/动态 tab -->
+  <view class="search-panel" style="top:{{statusBarHeight + 44}}px;">
+    <view class="search-box" bindtap="gotoSearch">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索用户昵称 / ID" placeholder-class="search-ph" disabled />
+    </view>
+    <view class="top-tabs">
+      <view class="top-tab {{topTab === 0 ? 'active' : ''}}" data-index="0" bindtap="chooseTopTab">关注</view>
+      <view class="top-tab {{topTab === 1 ? 'active' : ''}}" data-index="1" bindtap="chooseTopTab">动态</view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 108}}px;"></view>
+
+  <!-- 分类 tab:最新 推荐 热评 点赞 人气 -->
+  <view class="cate-tabs" wx:if="{{topTab === 1}}">
+    <view wx:for="{{cateList}}" wx:key="*this"
+      class="cate-tab {{cateActive === index ? 'active' : ''}}"
+      data-index="{{index}}" bindtap="chooseCate">{{item}}</view>
+  </view>
+  <view style="height:20rpx;"></view>
+
+  <!-- 动态列表 -->
+  <view class="lls-section feed-list" wx:if="{{topTab === 1}}">
+    <view wx:for="{{feedList}}" wx:key="id" class="feed-card lls-fade-up">
+      <view class="feed-head">
+        <view class="lls-avatar feed-avatar">{{item.avatarText}}</view>
+        <view class="feed-user">
+          <view class="feed-name-row">
+            <text class="feed-name">{{item.name}}</text>
+            <text class="feed-gender {{item.gender === 'f' ? 'female' : ''}}">{{item.gender === 'f' ? '♀' : '♂'}}</text>
+          </view>
+          <view class="feed-meta">{{item.time}}发布于{{item.city}}</view>
+        </view>
+      </view>
+      <view class="feed-content" data-id="{{item.id}}" bindtap="gotoDetails">{{item.content}}</view>
+      <view class="feed-cover" wx:if="{{item.cover}}">
+        <view class="feed-cover-inner">{{item.coverText}}</view>
+      </view>
+      <view class="feed-tag" wx:if="{{item.tag}}"># {{item.tag}}</view>
+      <view class="feed-actions">
+        <view class="feed-action">👁 {{item.views}}</view>
+        <view class="feed-action" data-id="{{item.id}}" catchtap="gotoDetails">💬 {{item.comments}}</view>
+        <view class="feed-action {{item.liked ? 'liked' : ''}}" data-index="{{index}}" catchtap="toggleLike">♡ {{item.likes}}</view>
+      </view>
+    </view>
+    <view class="lls-empty" wx:if="{{feedList.length === 0}}">暂无动态</view>
+  </view>
+
+  <!-- 关注Tab -->
+  <view class="lls-section" wx:if="{{topTab === 0}}">
+    <!-- 我关注的人(头像横滑) -->
+    <scroll-view class="follow-users" scroll-x wx:if="{{followList.length > 0}}">
+      <view class="follow-user" wx:for="{{followList}}" wx:key="id"
+        data-id="{{item.id}}" bindtap="gotoPlayer">
+        <view class="lls-avatar follow-avatar">
+          <image wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill" class="follow-avatar-img" />
+          <text wx:else>{{item.avatarText}}</text>
+        </view>
+        <view class="follow-name">{{item.name}}</view>
+      </view>
+    </scroll-view>
+
+    <!-- 关注的人发布的动态 -->
+    <view class="feed-list" wx:if="{{followFeedList.length > 0}}">
+      <view wx:for="{{followFeedList}}" wx:key="id" class="feed-card lls-fade-up">
+        <view class="feed-head">
+          <view class="lls-avatar feed-avatar follow-head" data-author="{{item.authorId}}" bindtap="gotoPlayer">{{item.avatarText}}</view>
+          <view class="feed-user">
+            <view class="feed-name-row">
+              <text class="feed-name" data-author="{{item.authorId}}" bindtap="gotoPlayer">{{item.name}}</text>
+              <text class="feed-gender {{item.gender === 'f' ? 'female' : ''}}">{{item.gender === 'f' ? '♀' : '♂'}}</text>
+            </view>
+            <view class="feed-meta">{{item.time}}发布于{{item.city}}</view>
+          </view>
+        </view>
+        <view class="feed-content" data-id="{{item.id}}" bindtap="gotoDetails">{{item.content}}</view>
+        <view class="feed-cover" wx:if="{{item.cover}}">
+          <view class="feed-cover-inner">{{item.coverText}}</view>
+        </view>
+        <view class="feed-tag" wx:if="{{item.tag}}"># {{item.tag}}</view>
+        <view class="feed-actions">
+          <view class="feed-action">👁 {{item.views}}</view>
+          <view class="feed-action" data-id="{{item.id}}" catchtap="gotoDetails">💬 {{item.comments}}</view>
+          <view class="feed-action {{item.liked ? 'liked' : ''}}" data-index="{{index}}" catchtap="toggleFollowLike">♡ {{item.likes}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空态 -->
+    <view class="lls-empty" wx:if="{{followLoaded && followList.length === 0}}">
+      还没有关注的人~ 去首页关注喜欢的护航员吧
+    </view>
+    <view class="lls-empty" wx:if="{{followLoaded && followList.length > 0 && followFeedList.length === 0}}">
+      关注的人还没有发布动态哦~
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="fab" wx:if="{{topTab === 1}}" bindtap="gotoPublish">＋</view>
+
+  <view style="height:40rpx;"></view>
+</view>

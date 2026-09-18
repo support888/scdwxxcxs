@@ -1,0 +1,9 @@
+<view class="app-container">
+  <view class="tech-element tech-circle"></view>
+  <view class="tech-element tech-lines"></view>
+  <view class="stub-page">
+    <view class="stub-icon">L</view>
+    <view class="stub-title">团队分享</view>
+    <view class="stub-desc">LLS club | page under development</view>
+  </view>
+</view>

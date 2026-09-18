@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "disableSwipeBack": false,
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true
+}

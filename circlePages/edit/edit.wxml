@@ -1,0 +1,61 @@
+<view class="app-container publish-page">
+  <view class="tech-element tech-lines"></view>
+
+  <!-- 紫色渐变头部 -->
+  <view class="publish-header" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-back" bindtap="goBack">‹</view>
+      <view class="nav-title">发布动态</view>
+      <view class="nav-placeholder"></view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 88}}px;"></view>
+
+  <!-- 正文 -->
+  <view class="publish-card lls-fade-up">
+    <textarea
+      class="publish-textarea"
+      value="{{content}}"
+      placeholder="分享你的游戏日常、组队信息、上分战绩..."
+      placeholder-class="ph"
+      maxlength="{{maxLen}}"
+      bindinput="onContentInput"
+    />
+    <view class="publish-counter">{{content.length}}/{{maxLen}}</view>
+    <!-- 实时敏感词预警(王者式:黄=屏蔽,红=禁发) -->
+    <view class="scan-tip scan-{{scanLevel}}" wx:if="{{scanTip}}">
+      <text class="scan-icon">{{scanLevel === 'block' ? '⛔' : '⚠'}}</text>
+      <text>{{scanTip}}</text>
+    </view>
+  </view>
+
+  <!-- 话题标签 -->
+  <view class="publish-card lls-fade-up">
+    <view class="card-row">
+      <view class="card-label">话题标签</view>
+      <view class="card-tip">可选</view>
+    </view>
+    <view class="tag-list">
+      <view
+        class="tag-item {{tagActive === index ? 'active' : ''}}"
+        wx:for="{{tagList}}" wx:key="*this"
+        data-index="{{index}}" bindtap="chooseTag"># {{item}}</view>
+    </view>
+  </view>
+
+  <!-- 安全提示 -->
+  <view class="publish-tip">
+    <text class="tip-icon">🛡</text>
+    <text>发布内容将经过微信内容安全检测,违规内容无法发布</text>
+  </view>
+
+  <view style="height:180rpx;"></view>
+
+  <!-- 底部发布 -->
+  <view class="publish-footer">
+    <view class="submit-btn {{submitting ? 'is-disabled' : ''}}" bindtap="onSubmit">
+      <text wx:if="{{!submitting}}">发布</text>
+      <text wx:else>检测中...</text>
+    </view>
+  </view>
+</view>

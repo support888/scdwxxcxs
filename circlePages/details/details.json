@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "disableSwipeBack": false,
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "动态详情",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

@@ -1,0 +1,36 @@
+<view class="app-container login-container">
+  <view class="tech-element tech-circle"></view>
+  <view class="tech-element tech-lines"></view>
+
+  <view class="login-logo-area lls-fade-up">
+    <view class="login-logo">LLS</view>
+    <view class="login-name">LLS俱乐部</view>
+    <view class="login-slogan">专业护航 · 极速陪练 · 安心消费</view>
+  </view>
+
+  <!-- 注册资料:微信官方头像昵称填写能力 -->
+  <view class="login-form lls-fade-up">
+    <button class="avatar-choose" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image wx:if="{{avatarUrl}}" class="avatar-img" src="{{avatarUrl}}" mode="aspectFill" />
+      <view wx:else class="avatar-ph">
+        <text class="avatar-ph-icon">📷</text>
+        <text class="avatar-ph-text">选择头像</text>
+      </view>
+    </button>
+    <input class="nick-input" type="nickname" placeholder="请输入昵称" placeholder-class="nick-ph"
+      value="{{nickname}}" bindinput="onNickInput" bindblur="onNickInput" maxlength="20" />
+  </view>
+
+  <view class="login-btn-area">
+    <button class="lls-btn login-btn" loading="{{logging}}" bindtap="doLogin" data-type="wechat">
+      {{logging ? '注册中...' : '微信一键注册登录'}}
+    </button>
+
+    <view class="agree-row" bindtap="toggleAgree">
+      <view class="agree-check {{agreed ? 'checked' : ''}}">{{agreed ? '✓' : ''}}</view>
+      <view class="agree-text">
+        我已阅读并同意 <text class="agree-link" catchtap="showAgreement">《用户协议》</text>和<text class="agree-link" catchtap="showAgreement">《隐私政策》</text>
+      </view>
+    </view>
+  </view>
+</view>

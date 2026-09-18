@@ -1,0 +1,25 @@
+<view class="app-container">
+  <view class="tech-element tech-circle"></view>
+  <view class="tech-element tech-lines"></view>
+
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-title lls-gradient-text">圈子</view>
+      <view class="view-more" bindtap="gotoAll">全部圈子 ›</view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 44}}px;"></view>
+
+  <view class="lls-section circle-list">
+    <view wx:for="{{circleList}}" wx:key="id" class="lls-card circle-card lls-fade-up"
+      data-id="{{item.id}}" bindtap="gotoCircle">
+      <view class="circle-logo logo-{{item.theme}}">{{item.name[0]}}</view>
+      <view class="circle-info">
+        <view class="circle-name">{{item.name}}</view>
+        <view class="circle-desc">{{item.desc}}</view>
+      </view>
+      <view class="circle-count">{{item.count}}成员</view>
+    </view>
+  </view>
+  <view style="height:40rpx;"></view>
+</view>

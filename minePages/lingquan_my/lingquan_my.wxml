@@ -1,0 +1,64 @@
+<view class="app-container coupon-page">
+  <view class="tech-element tech-lines"></view>
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-back" bindtap="goBack">‹</view>
+      <view class="nav-title">我的优惠券</view>
+      <view class="nav-placeholder"></view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 44}}px;"></view>
+
+  <view class="lls-section">
+    <!-- 蓝色渐变统计卡 -->
+    <view class="coupon-hero lls-fade-up">
+      <view class="hero-label">
+        <text class="hero-ico">🏷</text>
+        <text>可用优惠券</text>
+      </view>
+      <view class="hero-num">
+        <text class="num">{{count}}</text>
+        <text class="unit">张</text>
+      </view>
+      <view class="hero-btn" bindtap="gotoUse">
+        <text>去使用</text>
+        <text class="hero-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 分区标题 -->
+    <view class="coupon-block-title">我的优惠券</view>
+
+    <!-- 券列表 -->
+    <view class="coupon-list" wx:if="{{list.length > 0}}">
+      <view class="coupon-item" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="useCoupon">
+        <view class="coupon-left">
+          <view class="coupon-amount">
+            <text class="coupon-symbol">¥</text>
+            <text class="coupon-value">{{item.amount}}</text>
+          </view>
+          <view class="coupon-cond">{{item.condition || '无门槛'}}</view>
+        </view>
+        <view class="coupon-mid">
+          <view class="coupon-name">{{item.name}}</view>
+          <view class="coupon-time">有效期至 {{item.expire}}</view>
+        </view>
+        <view class="coupon-use">去使用</view>
+      </view>
+    </view>
+
+    <!-- 空态 -->
+    <view class="coupon-empty" wx:else>
+      <view class="glass">
+        <view class="glass-lid"></view>
+        <view class="glass-top"></view>
+        <view class="glass-neck"></view>
+        <view class="glass-bottom"></view>
+        <view class="glass-base"></view>
+      </view>
+      <view class="coupon-empty-text">~ 暂无数据 ~</view>
+    </view>
+  </view>
+</view>

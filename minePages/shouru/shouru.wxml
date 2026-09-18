@@ -1,0 +1,76 @@
+<view class="app-container income-page">
+  <view class="tech-element tech-lines"></view>
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-back" bindtap="goBack">‹</view>
+      <view class="nav-title">我的收入</view>
+      <view class="nav-placeholder"></view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 44}}px;"></view>
+
+  <view class="lls-section">
+    <!-- 余额卡 -->
+    <view class="income-hero lls-fade-up">
+      <view class="hero-label">可提现余额（元）</view>
+      <view class="hero-num">
+        <text class="hero-symbol">¥</text>
+        <text class="hero-value">{{data.balance}}</text>
+      </view>
+      <view class="hero-btn" bindtap="gotoWithdraw">去提现 ›</view>
+
+      <view class="hero-stats">
+        <view class="hero-stat">
+          <view class="stat-num">{{data.totalIncome}}</view>
+          <view class="stat-label">累计收入</view>
+        </view>
+        <view class="hero-divider"></view>
+        <view class="hero-stat">
+          <view class="stat-num">{{data.withdrawn}}</view>
+          <view class="stat-label">已提现</view>
+        </view>
+        <view class="hero-divider"></view>
+        <view class="hero-stat">
+          <view class="stat-num">{{data.pending}}</view>
+          <view class="stat-label">待结算</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 收入概览 -->
+    <view class="overview-row">
+      <view class="overview-card lls-fade-up">
+        <view class="overview-num">{{data.todayIncome}}</view>
+        <view class="overview-label">今日收入</view>
+      </view>
+      <view class="overview-card lls-fade-up">
+        <view class="overview-num">{{data.monthIncome}}</view>
+        <view class="overview-label">本月收入</view>
+      </view>
+    </view>
+
+    <!-- 收入明细 -->
+    <view class="income-block-title">
+      <text class="block-name">收入明细</text>
+      <text class="block-more" bindtap="gotoLog">全部 ›</text>
+    </view>
+
+    <view class="log-list" wx:if="{{data.list.length > 0}}">
+      <view class="log-item" wx:for="{{data.list}}" wx:key="id">
+        <view class="log-left">
+          <view class="log-title">{{item.title}}</view>
+          <view class="log-meta">{{item.type}} · {{item.time}}</view>
+        </view>
+        <view class="log-amount {{item.amount > 0 ? 'in' : 'out'}}">
+          {{item.amount > 0 ? '+' : '-'}}{{item.amount > 0 ? item.amount : -item.amount}}
+        </view>
+      </view>
+    </view>
+
+    <view class="lls-empty" wx:else>暂无收入记录</view>
+  </view>
+
+  <view style="height:60rpx;"></view>
+</view>

@@ -1,0 +1,127 @@
+<view class="app-container edit-page">
+  <view class="tech-element tech-lines"></view>
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-back" bindtap="goBack">‹</view>
+      <view class="nav-title">资料修改</view>
+      <view class="nav-placeholder"></view>
+    </view>
+  </view>
+  <view style="height:{{statusBarHeight + 44}}px;"></view>
+
+  <!-- 头像 -->
+  <view class="avatar-block lls-fade-up">
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar" hover-class="none">
+      <image wx:if="{{form.avatar}}" src="{{form.avatar}}" mode="aspectFill" class="avatar-img" />
+      <text wx:else class="avatar-emoji">👾</text>
+      <view class="avatar-badge">📷</view>
+    </button>
+  </view>
+
+  <!-- 性别 -->
+  <view class="gender-row lls-fade-up">
+    <view class="gender-pill {{form.gender === 'f' ? 'active' : ''}}" data-gender="f" bindtap="chooseGender">
+      <text class="gender-ico">♀</text>
+      <text>小姐姐</text>
+    </view>
+    <view class="gender-pill {{form.gender === 'm' ? 'active' : ''}}" data-gender="m" bindtap="chooseGender">
+      <text class="gender-ico">♂</text>
+      <text>小哥哥</text>
+    </view>
+  </view>
+
+  <view class="form-wrap">
+    <!-- 昵称 -->
+    <view class="field lls-fade-up">
+      <view class="field-label">昵称</view>
+      <input class="field-input" type="nickname" value="{{form.nickname}}" maxlength="{{maxNick}}"
+        placeholder="请输入昵称" placeholder-class="ph" bindinput="onNicknameInput" confirm-type="done" />
+      <view class="scan-tip scan-{{nickLevel}}" wx:if="{{nickTip}}">{{nickTip}}</view>
+    </view>
+
+    <!-- 生日(必填) -->
+    <view class="field lls-fade-up">
+      <view class="field-label">生日 <text class="field-req">（必填）</text></view>
+      <picker mode="date" value="{{form.birthday}}" start="1940-01-01" end="2026-12-31" bindchange="onBirthday">
+        <view class="field-input field-picker">
+          <text class="{{form.birthday ? 'picker-text' : 'ph'}}">{{form.birthday || '请选择生日'}}</text>
+          <text class="field-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 身高 -->
+    <view class="field lls-fade-up">
+      <view class="field-label">身高(cm)</view>
+      <input class="field-input" type="digit" value="{{form.height}}" data-key="height" maxlength="3"
+        placeholder="请输入身高" placeholder-class="ph" bindinput="onInput" />
+    </view>
+
+    <!-- 体重 -->
+    <view class="field lls-fade-up">
+      <view class="field-label">体重(kg)</view>
+      <input class="field-input" type="digit" value="{{form.weight}}" data-key="weight" maxlength="3"
+        placeholder="请输入体重" placeholder-class="ph" bindinput="onInput" />
+    </view>
+
+    <!-- 职业 -->
+    <view class="field lls-fade-up">
+      <view class="field-label">职业</view>
+      <input class="field-input" value="{{form.job}}" data-key="job" maxlength="20"
+        placeholder="请输入你的职业" placeholder-class="ph" bindinput="onInput" />
+    </view>
+
+    <!-- 城市 -->
+    <view class="field lls-fade-up">
+      <view class="field-label">城市</view>
+      <input class="field-input" value="{{form.city}}" data-key="city" maxlength="20"
+        placeholder="请输入你城市" placeholder-class="ph" bindinput="onInput" />
+    </view>
+
+    <!-- 个性签名 -->
+    <view class="field lls-fade-up">
+      <view class="field-label">个性签名</view>
+      <view class="sign-wrap">
+        <textarea class="sign-textarea" value="{{form.signature}}" maxlength="{{maxSign}}"
+          placeholder="介绍一下你自己..." placeholder-class="ph" bindinput="onSignatureInput" />
+        <view class="sign-mic">🎤</view>
+      </view>
+      <view class="scan-tip scan-{{signLevel}}" wx:if="{{signTip}}">{{signTip}}</view>
+    </view>
+
+    <!-- 兴趣标签 -->
+    <view class="field lls-fade-up">
+      <view class="field-label">兴趣标签</view>
+      <view class="tag-wrap">
+        <view wx:for="{{tags}}" wx:key="name"
+          class="tag-item {{item.cls}} {{item.on ? 'on' : ''}}"
+          data-index="{{index}}" bindtap="toggleTag">{{item.name}}</view>
+      </view>
+    </view>
+
+    <!-- 背景图 -->
+    <view class="field lls-fade-up">
+      <view class="field-label">背景图</view>
+      <view class="cover-box" bindtap="chooseCover">
+        <image wx:if="{{form.cover}}" src="{{form.cover}}" mode="aspectFill" class="cover-img" />
+        <view wx:else class="cover-art">
+          <view class="cover-art-glow"></view>
+          <view class="cover-art-tip">点击上传背景图</view>
+        </view>
+        <view class="cover-retry" wx:if="{{form.cover}}" catchtap="chooseCover">更换</view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:200rpx;"></view>
+
+  <!-- 底部保存 -->
+  <view class="edit-footer">
+    <view class="save-btn {{submitting ? 'is-disabled' : ''}}" bindtap="onSave">
+      <text wx:if="{{!submitting}}">确认保存</text>
+      <text wx:else>保存中...</text>
+    </view>
+  </view>
+</view>

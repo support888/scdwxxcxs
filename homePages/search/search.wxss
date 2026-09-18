@@ -1,0 +1,230 @@
+/* LLS club - 搜索 */
+.search-page {
+  position: relative;
+  z-index: 1;
+  padding: 0 24rpx 40rpx;
+}
+
+/* 顶部空隙:未搜索时搜索栏位于中间偏上;搜索后回到顶部常规位置 */
+.search-top-gap {
+  height: 280rpx;
+}
+.searching .search-top-gap {
+  height: 24rpx;
+}
+
+/* ---------- 搜索栏 ---------- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 16rpx 0 8rpx;
+}
+.search-input-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  height: 72rpx;
+  padding: 0 24rpx;
+  border-radius: 36rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2rpx solid rgba(0, 229, 255, 0.25);
+}
+.s-icon {
+  font-size: 26rpx;
+}
+.s-input {
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+  color: #fff;
+}
+.s-ph {
+  color: #5a6b85;
+}
+.s-clear {
+  padding: 8rpx 4rpx 8rpx 12rpx;
+  font-size: 26rpx;
+  color: #5a6b85;
+}
+.s-btn {
+  height: 72rpx;
+  padding: 0 32rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 36rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #04304a, #0e7d95);
+  border: 2rpx solid rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 24rpx rgba(0, 229, 255, 0.25);
+}
+
+/* ---------- 搜索历史 ---------- */
+.history {
+  margin-top: 32rpx;
+}
+.h-title {
+  font-size: 26rpx;
+  color: #5a6b85;
+  margin-bottom: 20rpx;
+}
+.h-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.h-tag {
+  padding: 10rpx 28rpx;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  color: #c8d6e5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2rpx solid rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- 结果列表 ---------- */
+.result-list {
+  margin-top: 24rpx;
+}
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2rpx solid rgba(255, 255, 255, 0.1);
+}
+.u-avatar {
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #04304a, #0e7d95);
+  border: 2rpx solid rgba(0, 229, 255, 0.4);
+}
+.u-avatar-img {
+  width: 100%;
+  height: 100%;
+}
+.u-avatar-text {
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #fff;
+}
+.u-me-badge {
+  position: absolute;
+  bottom: -4rpx;
+  right: -4rpx;
+  padding: 2rpx 12rpx;
+  border-radius: 18rpx;
+  font-size: 20rpx;
+  color: #0A1427;
+  background: linear-gradient(135deg, #00e5ff, #ae8eff);
+  border: 2rpx solid #0A1427;
+  font-weight: 700;
+}
+.u-me-tag {
+  margin-left: 10rpx;
+  padding: 2rpx 12rpx;
+  border-radius: 14rpx;
+  font-size: 20rpx;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1rpx solid rgba(0, 229, 255, 0.4);
+}
+.u-follow.is-me {
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  border: 2rpx solid rgba(0, 229, 255, 0.4);
+  box-shadow: none;
+}
+.u-info {
+  flex: 1;
+  min-width: 0;
+}
+.u-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+.u-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.u-gender {
+  font-size: 22rpx;
+  color: #4aa3ff;
+}
+.u-gender.f {
+  color: #ff7b9c;
+}
+.u-sub {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #00e5ff;
+}
+.u-sign {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #5a6b85;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.u-fans {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #c8d6e5;
+}
+.u-follow {
+  flex-shrink: 0;
+  padding: 12rpx 28rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #04304a, #0e7d95);
+  border: 2rpx solid rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 20rpx rgba(0, 229, 255, 0.2);
+}
+.u-follow.followed {
+  color: #5a6b85;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2rpx solid rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+}
+
+/* ---------- 空态 ---------- */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0 60rpx;
+}
+.empty-icon {
+  font-size: 80rpx;
+}
+.empty-text {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+.empty-tip {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #5a6b85;
+}
